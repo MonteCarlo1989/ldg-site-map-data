@@ -11,6 +11,26 @@ tags:
   - name: health
     description: Health operations
 paths:
+  /status:
+    get:
+      operationId: getAcquisitionStatus
+      responses:
+        "200":
+          description: Acquisition status and complete manifest and log
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AcquisitionStatus"
+  /run:
+    post:
+      operationId: runAcquisition
+      responses:
+        "202":
+          description: Acquisition started or already running
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AcquisitionStatus"
   /healthz:
     get:
       operationId: healthCheck
@@ -26,6 +46,24 @@ paths:
                 $ref: "#/components/schemas/HealthStatus"
 components:
   schemas:
+    ProducedFile:
+      type: object
+      required: [name, size, url]
+      properties:
+        name: { type: string }
+        size: { type: integer }
+        url: { type: string }
+    AcquisitionStatus:
+      type: object
+      required: [running, manifest, log, files]
+      properties:
+        running: { type: boolean }
+        manifest: { type: string }
+        log: { type: string }
+        files:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProducedFile"
     HealthStatus:
       type: object
       properties:

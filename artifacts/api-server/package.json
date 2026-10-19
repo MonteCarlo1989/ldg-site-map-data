@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "export NODE_ENV=development && pnpm run build && pnpm run start",
-    "build": "node ./build.mjs",
-    "start": "node --enable-source-maps ./dist/index.mjs",
+    "dev": "cd ../.. && uv run python gis/service.py",
+    "build": "cd ../.. && uv run python gis/acquire.py",
+    "start": "cd ../.. && uv run gunicorn --workers 1 --threads 4 --bind 0.0.0.0:${PORT:-8080} --chdir gis service:app",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
