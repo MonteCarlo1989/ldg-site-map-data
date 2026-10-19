@@ -1,0 +1,1070 @@
+ep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 727, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/1?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+
+2026-10-19T14:44:39.212288+00:00 REQUEST 3/3 https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer?f=json
+2026-10-19T14:44:39.260785+00:00 ERROR https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 45, in _request
+    response.raise_for_status()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer?f=json
+
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+</body>
+</html>
+
+2026-10-19T14:44:39.261742+00:00 RASTER SOURCE FAILED naip_site https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/acquire.py", line 100, in raster_job
+    meta = client.metadata(service)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 74, in metadata
+    return self._metadata(url)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 84, in _metadata
+    obj, _ = self.request(url, {"f": "json"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 30, in request
+    return self._request(url, params, binary)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 68, in _request
+    raise RuntimeError(f"{url} failed after three attempts: {last}")
+RuntimeError: https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer failed after three attempts: 502 Server Error: Bad Gateway for url: https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer?f=json
+
+2026-10-19T14:44:39.263199+00:00 RASTER SOURCE FAILED naip_context https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/acquire.py", line 100, in raster_job
+    meta = client.metadata(service)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 74, in metadata
+    return self._metadata(url)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 81, in _metadata
+    raise cached
+  File "/home/runner/workspace/gis/acquire.py", line 100, in raster_job
+    meta = client.metadata(service)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 74, in metadata
+    return self._metadata(url)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 84, in _metadata
+    obj, _ = self.request(url, {"f": "json"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 30, in request
+    return self._request(url, params, binary)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 68, in _request
+    raise RuntimeError(f"{url} failed after three attempts: {last}")
+RuntimeError: https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer failed after three attempts: 502 Server Error: Bad Gateway for url: https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer?f=json
+
+2026-10-19T14:44:39.421115+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer?f=json
+2026-10-19T14:44:39.424062+00:00 REQUEST 1/3 https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?f=json&bbox=-9417414.284746358%2C3403263.6918723104%2C-9193392.018570771%2C3629264.951111209&bboxSR=3857&imageSR=3857&size=3231%2C3259&format=jpg&transparent=false
+2026-10-19T14:44:41.187002+00:00 REQUEST 2/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/1?f=json
+2026-10-19T14:44:41.231032+00:00 ERROR https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/1?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/1?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 42, in _request
+    response = requests.get(url, params=params, timeout=(15, 75),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 727, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/1?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+
+2026-10-19T14:44:45.233469+00:00 REQUEST 3/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/1?f=json
+2026-10-19T14:44:46.925277+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?f=json&bbox=-9417414.284746358%2C3403263.6918723104%2C-9193392.018570771%2C3629264.951111209&bboxSR=3857&imageSR=3857&size=3231%2C3259&format=jpg&transparent=false
+2026-10-19T14:44:46.929712+00:00 REQUEST 1/3 https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer?f=json
+2026-10-19T14:44:47.211058+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer?f=json
+2026-10-19T14:44:47.215799+00:00 REQUEST 1/3 https://basemap.nationalmap.gov/arcgis/rest/directories/basemap_output/USGSTopo_MapServer/_ags_map6ed61a8afbc24ab8b26ff933a2310f8c.jpg
+2026-10-19T14:44:47.430247+00:00 ERROR https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/1?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/retry.py", line 510, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 42, in _request
+    response = requests.get(url, params=params, timeout=(15, 75),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+
+2026-10-19T14:44:47.432462+00:00 LAYER FAILED nfhl_lomr
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/acquire.py", line 43, in vector_job
+    batch, params, used = client.features(url, EXTENTS[extent], fields, where)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 102, in features
+    meta = self.metadata(url)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 74, in metadata
+    return self._metadata(url)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 84, in _metadata
+    obj, _ = self.request(url, {"f": "json"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 30, in request
+    return self._request(url, params, binary)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 68, in _request
+    raise RuntimeError(f"{url} failed after three attempts: {last}")
+RuntimeError: https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/1 failed after three attempts: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+2026-10-19T14:44:47.892398+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/directories/basemap_output/USGSTopo_MapServer/_ags_map6ed61a8afbc24ab8b26ff933a2310f8c.jpg
+2026-10-19T14:44:47.897230+00:00 REQUEST 1/3 https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?f=json&bbox=-9306826.783515409%2C3513917.013359032%2C-9303979.519801721%2C3517623.122166323&bboxSR=3857&imageSR=3857&size=2464%2C3207&format=jpg&transparent=false
+2026-10-19T14:44:54.892417+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?f=json&bbox=-9306826.783515409%2C3513917.013359032%2C-9303979.519801721%2C3517623.122166323&bboxSR=3857&imageSR=3857&size=2464%2C3207&format=jpg&transparent=false
+2026-10-19T14:44:54.902284+00:00 REQUEST 1/3 https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?f=json&bbox=-9311473.436925616%2C3509248.7663072455%2C-9299332.866391513%2C3522294.3979179263&bboxSR=3857&imageSR=3857&size=2626%2C2822&format=jpg&transparent=false
+2026-10-19T14:44:59.926162+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?f=json&bbox=-9311473.436925616%2C3509248.7663072455%2C-9299332.866391513%2C3522294.3979179263&bboxSR=3857&imageSR=3857&size=2626%2C2822&format=jpg&transparent=false
+2026-10-19T14:44:59.929589+00:00 REQUEST 1/3 https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?f=json&bbox=-9311473.436925616%2C3509248.7663072455%2C-9299332.866391513%2C3522294.3979179263&bboxSR=3857&imageSR=3857&size=2626%2C2822&format=jpg&transparent=false
+2026-10-19T14:45:04.797789+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?f=json&bbox=-9311473.436925616%2C3509248.7663072455%2C-9299332.866391513%2C3522294.3979179263&bboxSR=3857&imageSR=3857&size=2626%2C2822&format=jpg&transparent=false
+2026-10-19T14:45:04.803244+00:00 REQUEST 1/3 https://basemap.nationalmap.gov/arcgis/rest/directories/basemap_output/USGSImageryOnly_MapServer/_ags_map842cd625db224c5694bc3fe53d6d7c62.jpg
+2026-10-19T14:45:05.365866+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/directories/basemap_output/USGSImageryOnly_MapServer/_ags_map842cd625db224c5694bc3fe53d6d7c62.jpg
+2026-10-19T14:45:05.369430+00:00 REQUEST 1/3 https://basemap.nationalmap.gov/arcgis/rest/directories/basemap_output/USGSImageryOnly_MapServer/_ags_mapd05154d9c9ec44c2bfd873361af6527e.jpg
+2026-10-19T14:45:06.001569+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/directories/basemap_output/USGSImageryOnly_MapServer/_ags_mapd05154d9c9ec44c2bfd873361af6527e.jpg
+2026-10-19T14:45:06.004123+00:00 REQUEST 1/3 https://basemap.nationalmap.gov/arcgis/rest/directories/basemap_output/USGSTopo_MapServer/_ags_mapb3e917b98948456bbc765f51b5ecd37c.jpg
+2026-10-19T14:45:06.592589+00:00 RESPONSE 200 https://basemap.nationalmap.gov/arcgis/rest/directories/basemap_output/USGSTopo_MapServer/_ags_mapb3e917b98948456bbc765f51b5ecd37c.jpg
+2026-10-19T14:45:06.626428+00:00 Acquisition finished; 3 dataset failures.
+2026-10-19T14:48:58.095762+00:00 REQUEST 1/3 https://msc.fema.gov/portal/advanceSearch?state=12&county=12123
+2026-10-19T14:48:58.712500+00:00 RESPONSE 200 https://msc.fema.gov/portal/advanceSearch?state=12&county=12123
+2026-10-19T14:52:42.822993+00:00 NFHL-ONLY REFRESH: preserving all non-NFHL files and previous request ledgers.
+2026-10-19T14:52:42.830024+00:00 REQUEST GET 1/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28?f=json
+2026-10-19T14:52:42.902292+00:00 ERROR https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 45, in _request
+    response = self.session.request(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 727, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+
+2026-10-19T14:52:44.907343+00:00 REQUEST GET 2/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28?f=json
+2026-10-19T14:52:44.985703+00:00 ERROR https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 45, in _request
+    response = self.session.request(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 727, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+
+2026-10-19T14:52:48.993389+00:00 REQUEST GET 3/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28?f=json
+2026-10-19T14:52:49.055770+00:00 ERROR https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 45, in _request
+    response = self.session.request(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 727, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+
+2026-10-19T14:52:49.088150+00:00 NFHL FALLBACK FAILED nfhl_flood_zones 1 FEMA TLS1.2 HTTP/1.1 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 175, in attempt
+    features, fields, provenance = operation()
+                                   ^^^^^^^^^^^
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 219, in <lambda>
+    if attempt("1 FEMA TLS1.2 HTTP/1.1", url, lambda u=url: self.query(u, dataset)):
+                                                            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 77, in query
+    metadata = self.client.metadata(url)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 90, in metadata
+    return self._metadata(url)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 100, in _metadata
+    obj, _ = self.request(url, {"f": "json"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 33, in request
+    return self._request(url, params, binary, method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 84, in _request
+    raise RuntimeError(f"{url} failed after three attempts: {last}")
+RuntimeError: https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28 failed after three attempts: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /arcgis/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+2026-10-19T14:52:49.130844+00:00 REQUEST GET 1/3 https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json
+2026-10-19T14:52:49.204253+00:00 ERROR https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 45, in _request
+    response = self.session.request(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 727, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+
+2026-10-19T14:52:51.231997+00:00 REQUEST GET 2/3 https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json
+2026-10-19T14:52:51.452610+00:00 ERROR https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/retry.py", line 510, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 45, in _request
+    response = self.session.request(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 711, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+
+2026-10-19T14:52:55.479397+00:00 REQUEST GET 3/3 https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json
+2026-10-19T14:52:55.551289+00:00 ERROR https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 878, in connect
+    wrapped_socket, is_verified = _ssl_wrap_socket_and_match_hostname(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connection.py", line 1080, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 437, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/ssl_.py", line 481, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1104, in _create
+    self.do_handshake()
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/ssl.py", line 1382, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 45, in _request
+    response = self.session.request(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/adapters.py", line 727, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+
+2026-10-19T14:52:55.552528+00:00 NFHL FALLBACK FAILED nfhl_flood_zones 1 FEMA TLS1.2 HTTP/1.1 https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 175, in attempt
+    features, fields, provenance = operation()
+                                   ^^^^^^^^^^^
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 219, in <lambda>
+    if attempt("1 FEMA TLS1.2 HTTP/1.1", url, lambda u=url: self.query(u, dataset)):
+                                                            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 77, in query
+    metadata = self.client.metadata(url)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 90, in metadata
+    return self._metadata(url)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 100, in _metadata
+    obj, _ = self.request(url, {"f": "json"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 33, in request
+    return self._request(url, params, binary, method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 84, in _request
+    raise RuntimeError(f"{url} failed after three attempts: {last}")
+RuntimeError: https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28 failed after three attempts: HTTPSConnectionPool(host='hazards.fema.gov', port=443): Max retries exceeded with url: /gis/nfhl/rest/services/public/NFHL/MapServer/28?f=json (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))
+
+2026-10-19T14:52:55.553371+00:00 REQUEST GET 1/3 https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Reduced_Set_gdb/FeatureServer/0?f=json
+2026-10-19T14:52:55.755881+00:00 RESPONSE 200 https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Reduced_Set_gdb/FeatureServer/0?f=json
+2026-10-19T14:52:55.759363+00:00 REQUEST GET 1/3 https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Reduced_Set_gdb/FeatureServer/0/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.64638906063212%2C30.044325653122314%2C-83.53732845994496%2C30.145718612707654&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=750
+2026-10-19T14:53:07.632130+00:00 RESPONSE 200 https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Reduced_Set_gdb/FeatureServer/0/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.64638906063212%2C30.044325653122314%2C-83.53732845994496%2C30.145718612707654&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=750
+2026-10-19T14:53:08.483558+00:00 REQUEST GET 1/3 https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Reduced_Set_gdb/FeatureServer/0/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.64638906063212%2C30.044325653122314%2C-83.53732845994496%2C30.145718612707654&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=750&resultRecordCount=750
+2026-10-19T14:53:20.975903+00:00 RESPONSE 200 https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Reduced_Set_gdb/FeatureServer/0/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.64638906063212%2C30.044325653122314%2C-83.53732845994496%2C30.145718612707654&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=750&resultRecordCount=750
+2026-10-19T14:53:47.825283+00:00 REQUEST GET 1/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3?f=json
+2026-10-19T14:53:48.172165+00:00 RESPONSE 200 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3?f=json
+2026-10-19T14:53:48.175369+00:00 REQUEST GET 1/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.60464746284816%2C30.080620042954745%2C-83.57907005772891%2C30.109424582773375&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000
+2026-10-19T14:53:48.227595+00:00 RESPONSE 200 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.60464746284816%2C30.080620042954745%2C-83.57907005772891%2C30.109424582773375&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000
+2026-10-19T14:53:48.249526+00:00 REQUEST GET 1/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/16?f=json
+2026-10-19T14:53:48.281035+00:00 RESPONSE 200 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/16?f=json
+2026-10-19T14:53:48.281950+00:00 REQUEST GET 1/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/16/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.64638906063212%2C30.044325653122314%2C-83.53732845994496%2C30.145718612707654&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000
+2026-10-19T14:53:48.340004+00:00 RESPONSE 200 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/16/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.64638906063212%2C30.044325653122314%2C-83.53732845994496%2C30.145718612707654&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000
+2026-10-19T14:53:48.366976+00:00 REQUEST GET 1/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/1?f=json
+2026-10-19T14:53:48.397302+00:00 RESPONSE 200 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/1?f=json
+2026-10-19T14:53:48.398439+00:00 REQUEST GET 1/3 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/1/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.60464746284816%2C30.080620042954745%2C-83.57907005772891%2C30.109424582773375&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000
+2026-10-19T14:53:48.446922+00:00 RESPONSE 200 https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/1/query?f=geojson&where=1%3D1&outFields=%2A&geometry=-83.60464746284816%2C30.080620042954745%2C-83.57907005772891%2C30.109424582773375&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000
+2026-10-19T14:53:48.447951+00:00 REQUEST GET 1/3 https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+2026-10-19T14:53:48.481890+00:00 ERROR https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 51, in _request
+    response.raise_for_status()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+
+{
+    "error_code"    : "0x38cf0428",
+    "error_message" : "Not Found"
+}
+
+2026-10-19T14:53:50.578664+00:00 REQUEST GET 2/3 https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+2026-10-19T14:53:50.759262+00:00 ERROR https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 51, in _request
+    response.raise_for_status()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+
+{
+    "error_code"    : "0x38cf0428",
+    "error_message" : "Not Found"
+}
+
+2026-10-19T14:53:54.795325+00:00 REQUEST GET 3/3 https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+2026-10-19T14:53:54.882304+00:00 ERROR https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 51, in _request
+    response.raise_for_status()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+
+{
+    "error_code"    : "0x38cf0428",
+    "error_message" : "Not Found"
+}
+
+2026-10-19T14:53:54.898744+00:00 NFHL FALLBACK FAILED nfhl_lomr 1 FEMA TLS1.2 HTTP/1.1 https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 175, in attempt
+    features, fields, provenance = operation()
+                                   ^^^^^^^^^^^
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 219, in <lambda>
+    if attempt("1 FEMA TLS1.2 HTTP/1.1", url, lambda u=url: self.query(u, dataset)):
+                                                            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 77, in query
+    metadata = self.client.metadata(url)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 90, in metadata
+    return self._metadata(url)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 100, in _metadata
+    obj, _ = self.request(url, {"f": "json"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 33, in request
+    return self._request(url, params, binary, method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 84, in _request
+    raise RuntimeError(f"{url} failed after three attempts: {last}")
+RuntimeError: https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1 failed after three attempts: 404 Client Error: Not Found for url: https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/1?f=json
+
+2026-10-19T14:53:54.908663+00:00 REQUEST GET 1/3 https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Areas/FeatureServer?f=json
+2026-10-19T14:53:54.998511+00:00 ERROR https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Areas/FeatureServer?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 65, in _request
+    raise ValueError(json.dumps(result["error"], ensure_ascii=False))
+ValueError: {"code": 400, "message": "Invalid URL", "details": ["Invalid URL"]}
+
+{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}
+2026-10-19T14:53:57.003392+00:00 REQUEST GET 2/3 https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Areas/FeatureServer?f=json
+2026-10-19T14:53:57.088968+00:00 ERROR https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Areas/FeatureServer?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 65, in _request
+    raise ValueError(json.dumps(result["error"], ensure_ascii=False))
+ValueError: {"code": 400, "message": "Invalid URL", "details": ["Invalid URL"]}
+
+{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}
+2026-10-19T14:54:01.103067+00:00 REQUEST GET 3/3 https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Areas/FeatureServer?f=json
+2026-10-19T14:54:01.191102+00:00 ERROR https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Areas/FeatureServer?f=json
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/arcgis.py", line 65, in _request
+    raise ValueError(json.dumps(result["error"], ensure_ascii=False))
+ValueError: {"code": 400, "message": "Invalid URL", "details": ["Invalid URL"]}
+
+{"error":{"code":400,"message":"Invalid URL","details":["Invalid URL"]}}
+2026-10-19T14:54:01.197563+00:00 NFHL FALLBACK FAILED nfhl_lomr 2 Living Atlas full https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Areas/FeatureServer
+Traceback (most recent call last):
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 175, in attempt
+    features, fields, provenance = operation()
+                                   ^^^^^^^^^^^
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 231, in living_atlas
+    layers = self.service_layers(FULL, dataset, richer=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/nfhl_fallback.py", line 91, in service_layers
+    root = self.client.metadata(service)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 90, in metadata
+    return self._metadata(url)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 100, in _metadata
+    obj, _ = self.request(url, {"f": "json"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 33, in request
+    return self._request(url, params, binary, method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/gis/arcgis.py", line 84, in _request
+    raise RuntimeError(f"{url} failed after three attempts: {last}")
+RuntimeError: https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Areas/FeatureServer failed after three attempts: {"code": 400, "message": "Invalid URL", "details": ["Invalid URL"]}
+
+2026-10-19T14:54:01.199594+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/search?f=json&q=type%3A%22Feature+Service%22+AND+%28NFHL+OR+%22Flood+Hazard%22%29+AND+%28Florida+OR+FDEP+OR+FDEM+OR+FGIO%29&num=100&start=1
+2026-10-19T14:54:01.698613+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/search?f=json&q=type%3A%22Feature+Service%22+AND+%28NFHL+OR+%22Flood+Hazard%22%29+AND+%28Florida+OR+FDEP+OR+FDEM+OR+FGIO%29&num=100&start=1
+2026-10-19T14:54:01.699971+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/chadwhaley311?f=json
+2026-10-19T14:54:01.782466+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/chadwhaley311?f=json
+2026-10-19T14:54:01.788643+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/gdrice_BCGIS?f=json
+2026-10-19T14:54:01.850364+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/gdrice_BCGIS?f=json
+2026-10-19T14:54:01.852960+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/danielle.ivey@audubon.org_audubon?f=json
+2026-10-19T14:54:01.906487+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/danielle.ivey@audubon.org_audubon?f=json
+2026-10-19T14:54:01.914144+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/kfinch@vhb.com_VHB?f=json
+2026-10-19T14:54:01.969773+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/kfinch@vhb.com_VHB?f=json
+2026-10-19T14:54:01.979367+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/sarita.karki?f=json
+2026-10-19T14:54:02.068392+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/sarita.karki?f=json
+2026-10-19T14:54:02.069391+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/HawaiiStateGIS?f=json
+2026-10-19T14:54:02.123291+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/HawaiiStateGIS?f=json
+2026-10-19T14:54:02.124191+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/FDEPAGO?f=json
+2026-10-19T14:54:02.180498+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/FDEPAGO?f=json
+2026-10-19T14:54:02.181735+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/Kentucky_DGI?f=json
+2026-10-19T14:54:02.230407+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/Kentucky_DGI?f=json
+2026-10-19T14:54:02.232444+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/soa009_Harvard_CGA?f=json
+2026-10-19T14:54:02.400719+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/soa009_Harvard_CGA?f=json
+2026-10-19T14:54:02.404904+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/bcgisdata_BCGIS?f=json
+2026-10-19T14:54:02.461211+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/bcgisdata_BCGIS?f=json
+2026-10-19T14:54:02.463659+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/emirth_lancastercountypa?f=json
+2026-10-19T14:54:02.563841+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/emirth_lancastercountypa?f=json
+2026-10-19T14:54:02.565668+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/PanolaMS?f=json
+2026-10-19T14:54:02.615940+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/PanolaMS?f=json
+2026-10-19T14:54:02.619216+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/aaronjhosford?f=json
+2026-10-19T14:54:02.690363+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/aaronjhosford?f=json
+2026-10-19T14:54:02.693973+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/mbullington?f=json
+2026-10-19T14:54:02.765056+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/mbullington?f=json
+2026-10-19T14:54:02.769375+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/rt300hCOD?f=json
+2026-10-19T14:54:02.848661+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/rt300hCOD?f=json
+2026-10-19T14:54:02.855759+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/cakee?f=json
+2026-10-19T14:54:02.931670+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/cakee?f=json
+2026-10-19T14:54:02.936622+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/StJohnsCountyGIS?f=json
+2026-10-19T14:54:03.015951+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/StJohnsCountyGIS?f=json
+2026-10-19T14:54:03.016914+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/LeeCountyFLGIS?f=json
+2026-10-19T14:54:03.077881+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/LeeCountyFLGIS?f=json
+2026-10-19T14:54:03.079058+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/DataMVI_Groveland?f=json
+2026-10-19T14:54:03.129993+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/DataMVI_Groveland?f=json
+2026-10-19T14:54:03.131952+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/BCGISFL?f=json
+2026-10-19T14:54:03.190301+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/BCGISFL?f=json
+2026-10-19T14:54:03.191310+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/BK_Planning?f=json
+2026-10-19T14:54:03.285917+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/BK_Planning?f=json
+2026-10-19T14:54:03.290240+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/twright_KnA?f=json
+2026-10-19T14:54:03.410384+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/twright_KnA?f=json
+2026-10-19T14:54:03.412651+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/CFMGIS?f=json
+2026-10-19T14:54:03.464360+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/CFMGIS?f=json
+2026-10-19T14:54:03.468124+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/ClearviewGeographic?f=json
+2026-10-19T14:54:03.535571+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/ClearviewGeographic?f=json
+2026-10-19T14:54:03.536567+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/ixt229_umiami?f=json
+2026-10-19T14:54:03.691438+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/ixt229_umiami?f=json
+2026-10-19T14:54:03.692620+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/JHeffington?f=json
+2026-10-19T14:54:03.752083+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/JHeffington?f=json
+2026-10-19T14:54:03.753075+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/jhp103_georgetownuniv?f=json
+2026-10-19T14:54:03.928566+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/jhp103_georgetownuniv?f=json
+2026-10-19T14:54:03.937968+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/CGIT_GIS?f=json
+2026-10-19T14:54:04.002196+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/CGIT_GIS?f=json
+2026-10-19T14:54:04.003300+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/jfernandez@coralgables.com_cggis?f=json
+2026-10-19T14:54:04.118425+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/jfernandez@coralgables.com_cggis?f=json
+2026-10-19T14:54:04.154537+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/CollierCountyAGOL?f=json
+2026-10-19T14:54:04.214827+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/CollierCountyAGOL?f=json
+2026-10-19T14:54:04.216125+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/ryant@CHW?f=json
+2026-10-19T14:54:04.275258+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/ryant@CHW?f=json
+2026-10-19T14:54:04.281536+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/ap2534_CUGIS?f=json
+2026-10-19T14:54:04.409662+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/ap2534_CUGIS?f=json
+2026-10-19T14:54:04.413391+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/afratto_USCSSI?f=json
+2026-10-19T14:54:04.643067+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/afratto_USCSSI?f=json
+2026-10-19T14:54:04.647340+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/FDEPMapDirect?f=json
+2026-10-19T14:54:04.700212+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/FDEPMapDirect?f=json
+2026-10-19T14:54:04.701224+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/arobins_BCGIS?f=json
+2026-10-19T14:54:04.813986+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/arobins_BCGIS?f=json
+2026-10-19T14:54:04.816275+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/trgallegos27_UMiami?f=json
+2026-10-19T14:54:04.874562+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/trgallegos27_UMiami?f=json
+2026-10-19T14:54:04.875898+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/joel.carranza_CityofBradenton?f=json
+2026-10-19T14:54:04.931334+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/joel.carranza_CityofBradenton?f=json
+2026-10-19T14:54:04.936588+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/allena_CDB?f=json
+2026-10-19T14:54:04.989002+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/allena_CDB?f=json
+2026-10-19T14:54:04.992076+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/MonroeCountyGIS?f=json
+2026-10-19T14:54:05.050355+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/MonroeCountyGIS?f=json
+2026-10-19T14:54:05.052907+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/SanibelGIS?f=json
+2026-10-19T14:54:05.161864+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/SanibelGIS?f=json
+2026-10-19T14:54:05.167515+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/mkleinman@deerfieldbeachfl.gov_dfb?f=json
+2026-10-19T14:54:05.267332+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/mkleinman@deerfieldbeachfl.gov_dfb?f=json
+2026-10-19T14:54:05.314217+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/WPBAGOAdmin?f=json
+2026-10-19T14:54:05.380337+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/WPBAGOAdmin?f=json
+2026-10-19T14:54:05.383725+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/Haiqian?f=json
+2026-10-19T14:54:05.482098+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/Haiqian?f=json
+2026-10-19T14:54:05.500598+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/Clflynn_BCGIS?f=json
+2026-10-19T14:54:05.632763+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/Clflynn_BCGIS?f=json
+2026-10-19T14:54:05.635357+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/jbousqui_EPA?f=json
+2026-10-19T14:54:05.728922+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/jbousqui_EPA?f=json
+2026-10-19T14:54:05.731344+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/JBerg_STAUG?f=json
+2026-10-19T14:54:05.791221+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/JBerg_STAUG?f=json
+2026-10-19T14:54:05.792110+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/MDPublisher?f=json
+2026-10-19T14:54:05.856820+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/MDPublisher?f=json
+2026-10-19T14:54:05.857833+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/search?f=json&q=type%3A%22Feature+Service%22+AND+%28NFHL+OR+%22Flood+Hazard%22%29+AND+%28Florida+OR+FDEP+OR+FDEM+OR+FGIO%29&num=100&start=101
+2026-10-19T14:54:06.004460+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/search?f=json&q=type%3A%22Feature+Service%22+AND+%28NFHL+OR+%22Flood+Hazard%22%29+AND+%28Florida+OR+FDEP+OR+FDEM+OR+FGIO%29&num=100&start=101
+2026-10-19T14:54:06.015272+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/kristie?f=json
+2026-10-19T14:54:06.111599+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/kristie?f=json
+2026-10-19T14:54:06.115595+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/robinsonww?f=json
+2026-10-19T14:54:06.178352+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/robinsonww?f=json
+2026-10-19T14:54:06.179467+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/lusbyc?f=json
+2026-10-19T14:54:06.243940+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/lusbyc?f=json
+2026-10-19T14:54:06.245922+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/NEAllen@stpete.org_CSP?f=json
+2026-10-19T14:54:06.313368+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/NEAllen@stpete.org_CSP?f=json
+2026-10-19T14:54:06.315193+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/GISAdmin_FCMAPS?f=json
+2026-10-19T14:54:06.368037+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/GISAdmin_FCMAPS?f=json
+2026-10-19T14:54:06.368930+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/CCaicedo@cityofoviedo.net_Oviedo?f=json
+2026-10-19T14:54:06.428532+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/CCaicedo@cityofoviedo.net_Oviedo?f=json
+2026-10-19T14:54:06.429537+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/wlewis17_GISandData?f=json
+2026-10-19T14:54:06.489660+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/wlewis17_GISandData?f=json
+2026-10-19T14:54:06.490743+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/laikevin?f=json
+2026-10-19T14:54:06.575833+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/laikevin?f=json
+2026-10-19T14:54:06.576757+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/mvarkony_UMiami1?f=json
+2026-10-19T14:54:06.727587+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/mvarkony_UMiami1?f=json
+2026-10-19T14:54:06.728917+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/jpthom7921?f=json
+2026-10-19T14:54:06.843722+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/jpthom7921?f=json
+2026-10-19T14:54:06.846288+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/ldl14?f=json
+2026-10-19T14:54:06.955942+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/ldl14?f=json
+2026-10-19T14:54:06.957289+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/William.Isaacs@dot.state.fl.us_fdot?f=json
+2026-10-19T14:54:07.009197+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/William.Isaacs@dot.state.fl.us_fdot?f=json
+2026-10-19T14:54:07.014203+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/hhhenry.guy?f=json
+2026-10-19T14:54:07.111085+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/hhhenry.guy?f=json
+2026-10-19T14:54:07.112386+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/zsrodulski_Dewberry?f=json
+2026-10-19T14:54:07.165346+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/zsrodulski_Dewberry?f=json
+2026-10-19T14:54:07.167264+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/jbarton_Marathon?f=json
+2026-10-19T14:54:07.270130+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/jbarton_Marathon?f=json
+2026-10-19T14:54:07.271658+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/MD_Apps?f=json
+2026-10-19T14:54:07.330611+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/MD_Apps?f=json
+2026-10-19T14:54:07.333583+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/HoldenSLLD?f=json
+2026-10-19T14:54:07.437607+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/HoldenSLLD?f=json
+2026-10-19T14:54:07.440629+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/damronconsultants?f=json
+2026-10-19T14:54:07.551304+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/damronconsultants?f=json
+2026-10-19T14:54:07.553438+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/gis_smfl?f=json
+2026-10-19T14:54:07.649888+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/gis_smfl?f=json
+2026-10-19T14:54:07.651799+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/keegan.spera_ufl?f=json
+2026-10-19T14:54:07.894886+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/keegan.spera_ufl?f=json
+2026-10-19T14:54:07.896115+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/zhixiwan_hkufbe?f=json
+2026-10-19T14:54:07.955422+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/zhixiwan_hkufbe?f=json
+2026-10-19T14:54:07.957572+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/mbaird6_GISandData?f=json
+2026-10-19T14:54:08.164967+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/mbaird6_GISandData?f=json
+2026-10-19T14:54:08.168447+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/l.penuela.cantor?f=json
+2026-10-19T14:54:08.246568+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/l.penuela.cantor?f=json
+2026-10-19T14:54:08.277884+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/dwood_pascocounty?f=json
+2026-10-19T14:54:08.395592+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/dwood_pascocounty?f=json
+2026-10-19T14:54:08.396564+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/mike.holt@mymanatee.org?f=json
+2026-10-19T14:54:08.467627+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/mike.holt@mymanatee.org?f=json
+2026-10-19T14:54:08.468809+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/jtm58_pns?f=json
+2026-10-19T14:54:08.593925+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/jtm58_pns?f=json
+2026-10-19T14:54:08.603809+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/dharlan@tnc.org_TNC?f=json
+2026-10-19T14:54:08.692170+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/dharlan@tnc.org_TNC?f=json
+2026-10-19T14:54:08.695189+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/ncei_cds_noaa?f=json
+2026-10-19T14:54:08.748998+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/ncei_cds_noaa?f=json
+2026-10-19T14:54:08.770324+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/kbartley_fetch?f=json
+2026-10-19T14:54:08.830747+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/kbartley_fetch?f=json
+2026-10-19T14:54:08.831711+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/aeincmo?f=json
+2026-10-19T14:54:08.899294+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/aeincmo?f=json
+2026-10-19T14:54:08.903005+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/daniel.rydl?f=json
+2026-10-19T14:54:08.964463+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/daniel.rydl?f=json
+2026-10-19T14:54:08.978579+00:00 REQUEST GET 1/3 https://www.arcgis.com/sharing/rest/community/users/moliveri@hntb.com_HNTBCorp?f=json
+2026-10-19T14:54:09.103621+00:00 RESPONSE 200 https://www.arcgis.com/sharing/rest/community/users/moliveri@hntb.com_HNTBCorp?f=j
